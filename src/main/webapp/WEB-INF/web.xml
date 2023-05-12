@@ -3,4 +3,111 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>controller.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChoiceServlet</servlet-name>
+        <servlet-class>controller.ChoiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChoiceServlet</servlet-name>
+        <url-pattern>/choices</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>QuestionServlet</servlet-name>
+        <servlet-class>controller.QuestionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QuestionServlet</servlet-name>
+        <url-pattern>/questions</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VoteServlet</servlet-name>
+        <servlet-class>controller.VoteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoteServlet</servlet-name>
+        <url-pattern>/votes</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditUserServlet</servlet-name>
+        <servlet-class>controller.EditUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditUserServlet</servlet-name>
+        <url-pattern>/edituser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <servlet-class>controller.DeleteUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <url-pattern>/deleteuser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditVoteServlet</servlet-name>
+        <servlet-class>controller.EditVoteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditVoteServlet</servlet-name>
+        <url-pattern>/editvote</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteVoteServlet</servlet-name>
+        <servlet-class>controller.DeleteVoteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteVoteServlet</servlet-name>
+        <url-pattern>/deletevote</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditQuestionServlet</servlet-name>
+        <servlet-class>controller.EditQuestionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditQuestionServlet</servlet-name>
+        <url-pattern>/editquestion</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteQuestionServlet</servlet-name>
+        <servlet-class>controller.DeleteQuestionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteQuestionServlet</servlet-name>
+        <url-pattern>/deletequestion</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditChoiceServlet</servlet-name>
+        <servlet-class>controller.EditChoiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditChoiceServlet</servlet-name>
+        <url-pattern>/editchoice</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteChoiceServlet</servlet-name>
+        <servlet-class>controller.DeleteChoiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteChoiceServlet</servlet-name>
+        <url-pattern>/deletechoice</url-pattern>
+    </servlet-mapping>
 </web-app>
