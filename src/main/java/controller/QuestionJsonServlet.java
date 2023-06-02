@@ -1,18 +1,25 @@
 package controller;
 
 import com.example.javaee.Question;
-import com.example.javaee.User;
 import com.example.javaee.Vote;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 
-@WebServlet(name = "QuestionServlet", value = "/questions")
-public class QuestionServlet extends HttpServlet {
+@WebServlet(name = "QuestionJsonServlet", value = "/questionsjson")
+public class QuestionJsonServlet extends HttpServlet {
 
     // Поиск голоса по id
     private Vote FindById(Integer id, ArrayList<Vote> votes) {
@@ -64,6 +71,8 @@ public class QuestionServlet extends HttpServlet {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT id, voteid, content, datevote FROM public.question ORDER BY id ASC;");
             questions.clear();
+           // JsonObjectBuilder jsonObject = Json.createObjectBuilder();
+           // JsonArrayBuilder jsonArray = Json.createArrayBuilder();
             while (rs.next()) {
                 id = rs.getInt("voteId");
                 questions.add(new Question(rs.getInt("id"),
@@ -72,66 +81,30 @@ public class QuestionServlet extends HttpServlet {
                         rs.getDate("dateVote"),
                         FindById(id, votes)
                 ));
+                //jsonObject.add("id", rs.getInt("id"));
+               // jsonObject.add("voteId", rs.getInt("voteId"));
+               // jsonObject.add("content", rs.getString("content"));
+               // jsonObject.add("dateVote", String.valueOf(rs.getDate("dateVote")));
+               // jsonArray.add(jsonObject);
             }
             stmt.close();
             request.setAttribute("questions", questions);
+           // request.setAttribute("questionsjson", jsonArray.build());
+
+            PrintWriter writer = response.getWriter();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String questionsjson = gson.toJson(questions);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            writer.print(questionsjson);
+            writer.flush(); //flush data to file   <---
+            writer.close(); //close write
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-
-        if("/questions".equals(request.getServletPath())){
-            request.getRequestDispatcher("/jspf/questions.jsp").forward(request, response);
         }
 
         //getServletContext().getRequestDispatcher("/jspf/questions.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.setContentType("text/html");
-
-        String INSERT_QUESTION_SQL = "INSERT INTO public.question(" +
-                "voteid, content, datevote)" +
-                "VALUES (?, ?, ?);";
-
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "9i%OqhnIZTVN"
-            );
-            String content = request.getParameter("content");
-            Date dateVote = Date.valueOf(request.getParameter("dateVote"));
-
-            String vote = request.getParameter("voteId");
-            int index1 = vote.indexOf('=');
-            int index2 = vote.indexOf(",");
-            String r1 = vote.substring(index1+1, index2);
-            Integer voteId = Integer.parseInt(r1.trim());
-
-            Question newQuestion = new Question(voteId, content, dateVote);
-
-            try (PreparedStatement preparedStatement = conn.prepareStatement(INSERT_QUESTION_SQL)){
-                preparedStatement.setInt(1, voteId);
-                preparedStatement.setString(2, newQuestion.getContent());
-                preparedStatement.setDate(3, newQuestion.getDateVote());
-                int result = preparedStatement.executeUpdate();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            getServletContext().getRequestDispatcher("/jspf/questions.jsp").forward(request, response);
-        }
-
-
-        doGet(request, response);
     }
 }

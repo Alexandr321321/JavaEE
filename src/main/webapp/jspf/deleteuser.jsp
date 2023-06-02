@@ -24,8 +24,8 @@
             <thead>
             <tr>
                 <th scope="col">Код</th>
-                <th scope="col">Имя</th>
-                <th scope="col">Фамилия</th>
+                <th scope="col">ФИО</th>
+                <th scope="col">Пароль</th>
                 <th scope="col">Почта</th>
                 <th scope="col">Телефон</th>
                 <th scope="col">Статус</th>
@@ -35,8 +35,8 @@
             <c:forEach var="user" items="${users}">
                 <tr>
                     <td>${user.getId()}</td>
-                    <td>${user.getFirstName()}</td>
-                    <td>${user.getLastName()}</td>
+                    <td>${user.getFio()}</td>
+                    <td>${user.getPassword()}</td>
                     <td>${user.getPhone()}</td>
                     <td>${user.getEmail()}</td>
                     <td>${user.getStatus()}</td>
@@ -57,15 +57,15 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <%--@declare id="firstname"--%><label for="firstname" class="col-sm-3 col-form-label">Имя</label>
+                        <%--@declare id="fio"--%><label for="fio" class="col-sm-3 col-form-label">ФИО</label>
                         <div class="col-sm-7">
-                            <input type="text" name="firstname" class="form-control" id="staticFirstname" readonly value="${usersDelete[0].getFirstName()}"/>
+                            <input type="text" name="fio" class="form-control" id="staticFirstname" readonly value="${usersDelete[0].getFio()}"/>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <%--@declare id="lastname"--%><label for="lastname" class="col-sm-3 col-form-label">Фамилия</label>
+                        <%--@declare id="password"--%><label for="password" class="col-sm-3 col-form-label">Пароль</label>
                         <div class="col-sm-7">
-                            <input type="text" name="lastname" class="form-control" id="staticLastname" readonly value="${usersDelete[0].getLastName()}"/>
+                            <input type="text" name="password" class="form-control" id="staticLastname" readonly value="${usersDelete[0].getPassword()}"/>
                         </div>
                     </div>
                     <div class="mb-3 row">

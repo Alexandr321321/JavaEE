@@ -110,4 +110,218 @@
         <servlet-name>DeleteChoiceServlet</servlet-name>
         <url-pattern>/deletechoice</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserJsonServlet</servlet-name>
+        <servlet-class>controller.UserJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserJsonServlet</servlet-name>
+        <url-pattern>/usersjson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VoteJsonServlet</servlet-name>
+        <servlet-class>controller.VoteJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoteJsonServlet</servlet-name>
+        <url-pattern>/votesjson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>QuestionJsonServlet</servlet-name>
+        <servlet-class>controller.QuestionJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QuestionJsonServlet</servlet-name>
+        <url-pattern>/questionsjson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChoiceJsonServlet</servlet-name>
+        <servlet-class>controller.ChoiceJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChoiceJsonServlet</servlet-name>
+        <url-pattern>/choicesjson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserAddJsonServlet</servlet-name>
+        <servlet-class>controller.UserAddJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserAddJsonServlet</servlet-name>
+        <url-pattern>/useraddjson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserDeleteJsonServlet</servlet-name>
+        <servlet-class>controller.UserDeleteJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserDeleteJsonServlet</servlet-name>
+        <url-pattern>/userdeletejson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserEditJsonServlet</servlet-name>
+        <servlet-class>controller.UserEditJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserEditJsonServlet</servlet-name>
+        <url-pattern>/usereditjson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VoteAddJsonServlet</servlet-name>
+        <servlet-class>controller.VoteAddJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoteAddJsonServlet</servlet-name>
+        <url-pattern>/voteaddjson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VoteDeleteJsonServlet</servlet-name>
+        <servlet-class>controller.VoteDeleteJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoteDeleteJsonServlet</servlet-name>
+        <url-pattern>/votedeletejson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VoteEditJsonServlet</servlet-name>
+        <servlet-class>controller.VoteEditJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoteEditJsonServlet</servlet-name>
+        <url-pattern>/voteeditjson</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>QuestionAddJsonServlet</servlet-name>
+        <servlet-class>controller.QuestionAddJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QuestionAddJsonServlet</servlet-name>
+        <url-pattern>/questionaddjson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>QuestionDeleteJsonServlet</servlet-name>
+        <servlet-class>controller.QuestionDeleteJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QuestionDeleteJsonServlet</servlet-name>
+        <url-pattern>/questiondeletejson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>QuestionEditJsonServlet</servlet-name>
+        <servlet-class>controller.QuestionEditJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QuestionEditJsonServlet</servlet-name>
+        <url-pattern>/questioneditjson</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>ChoiceAddJsonServlet</servlet-name>
+        <servlet-class>controller.ChoiceAddJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChoiceAddJsonServlet</servlet-name>
+        <url-pattern>/choiceaddjson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChoiceDeleteJsonServlet</servlet-name>
+        <servlet-class>controller.ChoiceDeleteJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChoiceDeleteJsonServlet</servlet-name>
+        <url-pattern>/choicedeletejson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChoiceEditJsonServlet</servlet-name>
+        <servlet-class>controller.ChoiceEditJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChoiceEditJsonServlet</servlet-name>
+        <url-pattern>/choiceeditjson</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>UserAuthorizationJsonServlet</servlet-name>
+        <servlet-class>controller.UserAuthorizationJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserAuthorizationJsonServlet</servlet-name>
+        <url-pattern>/userauthorizationjson</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>UserJsonServletTest</servlet-name>
+        <servlet-class>controller.UserJsonServletTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserJsonServletTest</servlet-name>
+        <url-pattern>/usersjsontest</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>VoteJsonServletTest</servlet-name>
+        <servlet-class>controller.VoteJsonServletTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoteJsonServletTest</servlet-name>
+        <url-pattern>/votesjsontest</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>QuestionJsonServletTest</servlet-name>
+        <servlet-class>controller.QuestionJsonServletTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QuestionJsonServletTest</servlet-name>
+        <url-pattern>/questionsjsontest</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>UserGetJsonServlet</servlet-name>
+        <servlet-class>controller.UserGetJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserGetJsonServlet</servlet-name>
+        <url-pattern>/usergetjson</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>TestJsonServlet</servlet-name>
+        <servlet-class>controller.TestJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestJsonServlet</servlet-name>
+        <url-pattern>/testjson</url-pattern>
+    </servlet-mapping>
 </web-app>

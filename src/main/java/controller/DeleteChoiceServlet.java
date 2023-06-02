@@ -17,7 +17,7 @@ public class DeleteChoiceServlet extends HttpServlet {
 
     String SELECT_ALL_CHOICES = "SELECT id, questionid, userid, choiceuser FROM public.choice ORDER BY id ASC;";
     String SELECT_ALL_QUESTIONS = "SELECT id, voteid, content, datevote FROM public.question ORDER BY id ASC;";
-    String SELECT_ALL_USERS = "SELECT id, firstname, lastname, email, phone, status FROM public.user ORDER BY id ASC;";
+    String SELECT_ALL_USERS = "SELECT id, fio, password, email, phone, status FROM public.user ORDER BY id ASC;";
     String SELECT_CHOICE_BYID = "SELECT id, questionid, userid, choiceuser FROM public.choice WHERE id = ?;";
     String DELETE_CHOICE = "DELETE FROM public.choice WHERE id = ?;";
     ArrayList<Question> questions = new ArrayList<Question>();
@@ -84,8 +84,8 @@ public class DeleteChoiceServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
             String strId = request.getParameter("id");
@@ -132,8 +132,8 @@ public class DeleteChoiceServlet extends HttpServlet {
             users.clear();
             while (rs.next()) {
                 users.add(new User(rs.getInt("id"),
-                        rs.getString("firstName"),
-                        rs.getString("lastName"),
+                        rs.getString("fio"),
+                        rs.getString("password"),
                         rs.getString("phone"),
                         rs.getString("email"),
                         rs.getBoolean("status")
@@ -214,8 +214,8 @@ public class DeleteChoiceServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
             String strId = request.getParameter("id");

@@ -31,8 +31,8 @@ public class VoteServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT id, title, datestart, datefinish, status FROM public.vote ORDER BY id ASC");
@@ -75,8 +75,8 @@ public class VoteServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
             String title = request.getParameter("title");
             Date dateStart = Date.valueOf(request.getParameter("dateStart"));

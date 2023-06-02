@@ -18,8 +18,8 @@ import com.example.javaee.User;
 @WebServlet(name = "DeleteUserServlet", value = "/deleteuser")
 public class DeleteUserServlet extends HttpServlet {
 
-    String SELECT_ALL_USERS = "SELECT id, firstname, lastname, email, phone, status FROM public.user ORDER BY id ASC;";
-    String SELECT_USER_BYID = "SELECT id, firstname, lastname, email, phone, status FROM public.user WHERE id = ?;";
+    String SELECT_ALL_USERS = "SELECT id, fio, password, email, phone, status FROM public.user ORDER BY id ASC;";
+    String SELECT_USER_BYID = "SELECT id, fio, password, email, phone, status FROM public.user WHERE id = ?;";
     String DELETE_USER = "DELETE FROM public.user WHERE id = ?;";
     ArrayList<User> users = new ArrayList<User>();
     ArrayList<User> deleteuser = new ArrayList<User>();
@@ -37,8 +37,8 @@ public class DeleteUserServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
             String strId = request.getParameter("id");
@@ -51,8 +51,8 @@ public class DeleteUserServlet extends HttpServlet {
             users.clear();
             while (rs.next()) {
                 users.add(new User(rs.getInt("id"),
-                        rs.getString("firstName"),
-                        rs.getString("lastName"),
+                        rs.getString("fio"),
+                        rs.getString("password"),
                         rs.getString("email"),
                         rs.getString("phone"),
                         rs.getBoolean("status")
@@ -69,8 +69,8 @@ public class DeleteUserServlet extends HttpServlet {
                     deleteuser.clear();
                     while (rs.next()) {
                         deleteuser.add(new User(rs.getInt("id"),
-                                rs.getString("firstName"),
-                                rs.getString("lastName"),
+                                rs.getString("fio"),
+                                rs.getString("password"),
                                 rs.getString("phone"),
                                 rs.getString("email"),
                                 rs.getBoolean("status")
@@ -112,8 +112,8 @@ public class DeleteUserServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
 

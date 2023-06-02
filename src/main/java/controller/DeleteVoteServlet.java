@@ -39,8 +39,8 @@ public class DeleteVoteServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
             String strId = request.getParameter("id");
@@ -111,8 +111,8 @@ public class DeleteVoteServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
             Integer id = Integer.parseInt(request.getParameter("id"));

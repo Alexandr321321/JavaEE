@@ -1,16 +1,14 @@
 package com.example.javaee;
 
-import java.sql.Date;
-
 public class User {
     // Идентификатор пользователя
     private Integer id;
 
     // Имя
-    private String firstName;
+    private String fio;
 
     // Фамилия
-    private String lastName;
+    private String password;
 
     // Телефон
     private String phone;
@@ -26,38 +24,38 @@ public class User {
     }
 
     //конструктор с параметрами
-    public User(String firstName, String lastName, String phone, String email, Boolean status) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String fio, String password, String email, String phone, Boolean status) {
+        this.fio = fio;
+        this.password = password;
         this.email = email;
         this.phone = phone;
         this.status = status;
     }
 
     //конструктор с параметрами
-    public User(Integer id, String firstName, String lastName, String phone, String email, Boolean status) {
+    public User(Integer id, String fio, String password, String email, String phone, Boolean status) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fio = fio;
+        this.password = password;
         this.email = email;
         this.phone = phone;
         this.status = status;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFio() {
+        return fio;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhone() {
@@ -94,6 +92,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User {" + "Id = " + id + ", FirstName = " + firstName + ", LastName = " + lastName + ", Phone = " + phone + ", Email = " + email + ", Status = " + status + "}";
+        return "User {" + "Id = " + id + ", Fio = " + fio + ", Password = " + password + ", Email = " + email + ", Phone = " + phone +  ", Status = " + status + "}";
     }
 }

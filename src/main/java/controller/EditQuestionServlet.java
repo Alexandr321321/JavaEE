@@ -50,8 +50,8 @@ public class EditQuestionServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
             String strId = request.getParameter("id");
@@ -135,10 +135,6 @@ public class EditQuestionServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
-        String INSERT_QUESTION_SQL = "INSERT INTO public.question(" +
-                "voteid, content, datevote)" +
-                "VALUES (?, ?, ?);";
-
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -147,8 +143,8 @@ public class EditQuestionServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
             String strId = request.getParameter("id");

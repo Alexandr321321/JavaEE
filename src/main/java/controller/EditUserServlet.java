@@ -18,9 +18,9 @@ import com.example.javaee.User;
 @WebServlet(name = "EditUserServlet", value = "/edituser")
 public class EditUserServlet extends HttpServlet {
 
-    String SELECT_ALL_USERS = "SELECT id, firstname, lastname, email, phone, status FROM public.user ORDER BY id ASC;";
-    String SELECT_USER_BYID = "SELECT id, firstname, lastname, email, phone, status FROM public.user WHERE id = ?;";
-    String EDIT_USER = "UPDATE public.user SET firstname=?, lastname=?, email=?, phone=?, status=? WHERE id = ?;";
+    String SELECT_ALL_USERS = "SELECT id, fio, password, email, phone, status FROM public.user ORDER BY id ASC;";
+    String SELECT_USER_BYID = "SELECT id, fio, password, email, phone, status FROM public.user WHERE id = ?;";
+    String EDIT_USER = "UPDATE public.user SET fio=?, password=?, email=?, phone=?, status=? WHERE id = ?;";
     ArrayList<User> users = new ArrayList<User>();
     ArrayList<User> editusers = new ArrayList<User>();
     String userPath;
@@ -37,8 +37,8 @@ public class EditUserServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
             String strId = request.getParameter("id");
@@ -51,8 +51,8 @@ public class EditUserServlet extends HttpServlet {
             users.clear();
             while (rs.next()) {
                 users.add(new User(rs.getInt("id"),
-                        rs.getString("firstName"),
-                        rs.getString("lastName"),
+                        rs.getString("fio"),
+                        rs.getString("password"),
                         rs.getString("email"),
                         rs.getString("phone"),
                         rs.getBoolean("status")
@@ -69,10 +69,10 @@ public class EditUserServlet extends HttpServlet {
                     editusers.clear();
                     while (rs.next()) {
                         editusers.add(new User(rs.getInt("id"),
-                                rs.getString("firstName"),
-                                rs.getString("lastName"),
-                                rs.getString("phone"),
+                                rs.getString("fio"),
+                                rs.getString("password"),
                                 rs.getString("email"),
+                                rs.getString("phone"),
                                 rs.getBoolean("status")
                         ));
                     }
@@ -112,8 +112,8 @@ public class EditUserServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
 
 
@@ -123,15 +123,15 @@ public class EditUserServlet extends HttpServlet {
                 id = Integer.valueOf(strId);
             }
 
-            String firstname = request.getParameter("firstname");
-            String lastname = request.getParameter("lastname");
+            String fio = request.getParameter("fio");
+            String password = request.getParameter("password");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             Boolean status = Boolean.valueOf(request.getParameter("status"));
 
             try (PreparedStatement preparedStatement = conn.prepareStatement(EDIT_USER)){
-                preparedStatement.setString(1, firstname);
-                preparedStatement.setString(2, lastname);
+                preparedStatement.setString(1, fio);
+                preparedStatement.setString(2, password);
                 preparedStatement.setString(3, email);
                 preparedStatement.setString(4, phone);
                 preparedStatement.setBoolean(5, status);

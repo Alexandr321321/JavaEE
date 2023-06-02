@@ -1,10 +1,5 @@
 package controller;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -32,16 +27,16 @@ public class UserServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, firstname, lastname, email, phone, status FROM public.user ORDER BY id ASC;");
+            ResultSet rs = stmt.executeQuery("SELECT id, fio, password, email, phone, status FROM public.user ORDER BY id ASC;");
             users.clear();
             while (rs.next()) {
                 users.add(new User(rs.getInt("id"),
-                        rs.getString("firstName"),
-                        rs.getString("lastName"),
+                        rs.getString("fio"),
+                        rs.getString("password"),
                         rs.getString("email"),
                         rs.getString("phone"),
                         rs.getBoolean("status")
@@ -66,7 +61,7 @@ public class UserServlet extends HttpServlet {
         response.setContentType("text/html");
 
         String INSERT_USERS_SQL = "INSERT INTO public.user" +
-                "(firstname, lastname, email, phone, status) " +
+                "(fio, password, email, phone, status) " +
                 "VALUES (?, ?, ?, ?, ?);";
 
         try {
@@ -77,20 +72,20 @@ public class UserServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/golosovanie",
-                    "postgres", "a53mx0z29_-"
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "9i%OqhnIZTVN"
             );
-            String firstname = request.getParameter("firstname");
-            String lastname = request.getParameter("lastname");
+            String fio = request.getParameter("fio");
+            String password = request.getParameter("password");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             Boolean status = Boolean.valueOf(request.getParameter("status"));
 
-            User newUser = new User(firstname, lastname, email, phone, status);
+            User newUser = new User(fio, password, email, phone, status);
 
             try (PreparedStatement preparedStatement = conn.prepareStatement(INSERT_USERS_SQL)){
-                preparedStatement.setString(1, newUser.getFirstName());
-                preparedStatement.setString(2, newUser.getLastName());
+                preparedStatement.setString(1, newUser.getFio());
+                preparedStatement.setString(2, newUser.getPassword());
                 preparedStatement.setString(3, newUser.getEmail());
                 preparedStatement.setString(4, newUser.getPhone());
                 preparedStatement.setBoolean(5, newUser.getStatus());

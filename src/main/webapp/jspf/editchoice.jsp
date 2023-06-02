@@ -74,7 +74,7 @@
                                 <option disabled>Выберите пользователя</option>
                                 <c:forEach var="user" items="${users}">
                                     <option value="${user}">
-                                        <c:out value="${user.getFirstName()}"></c:out> <c:out value="${user.getLastName()}"></c:out>
+                                        <c:out value="${user.getFio()}"></c:out>
                                     </option>
                                 </c:forEach>
                             </select>

@@ -4,16 +4,24 @@ import com.example.javaee.Choice;
 import com.example.javaee.Question;
 import com.example.javaee.User;
 import com.example.javaee.Vote;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 
-@WebServlet(name = "ChoiceServlet", value = "/choices")
-public class ChoiceServlet extends HttpServlet {
+@WebServlet(name = "ChoiceJsonServlet", value = "/choicesjson")
+public class ChoiceJsonServlet extends HttpServlet {
 
     // Поиск вопроса по id
     private Vote FindByIdVote(Integer id, ArrayList<Vote> votes) {
@@ -129,6 +137,8 @@ public class ChoiceServlet extends HttpServlet {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT id, questionid, userid, choiceuser FROM public.choice;");
             choices.clear();
+            //JsonObjectBuilder jsonObject = Json.createObjectBuilder();
+            //JsonArrayBuilder jsonArray = Json.createArrayBuilder();
             while (rs.next()) {
                 idQuestion = rs.getInt("questionId");
                 idUser = rs.getInt("userId");
@@ -139,18 +149,29 @@ public class ChoiceServlet extends HttpServlet {
                         FindByIdQuestion(idQuestion, questions),
                         FindByIdUsers(idUser, users)
                 ));
+                //jsonObject.add("id", rs.getInt("id"));
+                //jsonObject.add("questionId", rs.getInt("questionId"));
+               // jsonObject.add("userId", rs.getInt("userId"));
+               // jsonObject.add("choiceUser", rs.getInt("choiceUser"));
+               // jsonArray.add(jsonObject);
             }
             stmt.close();
             request.setAttribute("choices", choices);
+           // request.setAttribute("choicesjson", jsonArray.build());
+
+            PrintWriter writer = response.getWriter();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String choicesjson = gson.toJson(choices);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            writer.print(choicesjson);
+            writer.flush(); //flush data to file   <---
+            writer.close(); //close write
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        if("/choices".equals(request.getServletPath())){
-            request.getRequestDispatcher("/jspf/choices.jsp").forward(request, response);
-        }
-
         //getServletContext().getRequestDispatcher("/jspf/choices.jsp").forward(request, response);
     }
 
@@ -189,12 +210,12 @@ public class ChoiceServlet extends HttpServlet {
             String r2 = user.substring(index3+1, index4);
             Integer userId = Integer.parseInt(r2.trim());
 
-            Choice newChoice = new Choice(questionId, userId, choiceUser);
+            Choice newQuestion = new Choice(questionId, userId, choiceUser);
 
             try (PreparedStatement preparedStatement = conn.prepareStatement(INSERT_CHOICE_SQL)){
                 preparedStatement.setInt(1, questionId);
                 preparedStatement.setInt(2, userId);
-                preparedStatement.setInt(3, newChoice.getChoiceUser());
+                preparedStatement.setInt(3, newQuestion.getChoiceUser());
                 int result = preparedStatement.executeUpdate();
             } catch (Exception e) {
                 System.out.println(e);
